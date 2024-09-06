@@ -6,4 +6,4 @@
 ### Depois de clonar o repositório, usar o comando no terminal para baixar as dependências
 ```
 npm i
-```bash
+```
