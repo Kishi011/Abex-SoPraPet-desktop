@@ -17,6 +17,18 @@
         >
           Documentação do Electron
         </v-list-item>
+        <v-list-item
+          href="https://vuejs.org/guide/introduction.html"
+          append-icon="mdi-vuejs"
+        >
+          Documentação do Vue 3
+        </v-list-item>
+        <v-list-item
+          href="https://router.vuejs.org"
+          append-icon="mdi-vuejs"
+        >
+          Documentação do Vue Router
+        </v-list-item>
       </v-list>
     </v-card>
 
@@ -26,17 +38,4 @@
 
 <script>
   console.log('This message is being logged by "App.vue", included via vite');
-  export default {
-    data() {
-      return {
-        tituloBotao: 'Vuetify está funcionando',
-      }
-    },
-
-    methods: {
-      buttonClick() {
-        console.log('ta funcionando o click');
-      }
-    },
-  }
 </script>
