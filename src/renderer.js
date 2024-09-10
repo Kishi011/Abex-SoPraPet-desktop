@@ -28,30 +28,15 @@
 import { createApp } from 'vue';
 import App from './App.vue';
 
-// configurando vue para rodar junto com vuetify
-import 'vuetify/styles';
-import { createVuetify } from 'vuetify';
-import * as components from 'vuetify/components'; // importa todos os componentes
-import * as directives from 'vuetify/directives'; // importa todas as diretivas
-import { aliases, mdi } from 'vuetify/iconsets/mdi';
-
 
 import router from './router';
+import axios from './plugins/axios';
+import vuetify from './plugins/vuetify';
 
-// criando uma instância do vuetify eu acho
-const vuetify = createVuetify({
-  components,
-  directives,
-  icons: {
-    defaultSet: 'mdi',
-    aliases,
-    sets: {
-      mdi,
-    },
-  },
-});
+
 
 createApp(App)
   .use(vuetify)
   .use(router)
+  .use(axios)
   .mount('#app');
