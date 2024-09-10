@@ -35,6 +35,9 @@ import * as components from 'vuetify/components'; // importa todos os componente
 import * as directives from 'vuetify/directives'; // importa todas as diretivas
 import { aliases, mdi } from 'vuetify/iconsets/mdi';
 
+
+import router from './router';
+
 // criando uma instância do vuetify eu acho
 const vuetify = createVuetify({
   components,
@@ -48,4 +51,7 @@ const vuetify = createVuetify({
   },
 });
 
-createApp(App).use(vuetify).mount('#app');
+createApp(App)
+  .use(vuetify)
+  .use(router)
+  .mount('#app');

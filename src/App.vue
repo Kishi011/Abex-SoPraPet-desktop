@@ -29,13 +29,33 @@
         >
           Documentação do Vue Router
         </v-list-item>
+        <v-list-item
+          href="https://axios-http.com/ptbr/docs/intro"
+        >
+          Documentação do Axios
+        </v-list-item>
       </v-list>
     </v-card>
 
-    
+    <main>
+      <h1>Teste</h1>
+      <RouterLink class="mr-2" to="/">Home</RouterLink>
+      <RouterLink class="mr-2" to="/about">About</RouterLink>
+      <v-btn @click="trocaTela">Esse botão troca de View</v-btn>
+      <RouterView />
+    </main>
+
   </v-container>
 </template>
 
 <script>
   console.log('This message is being logged by "App.vue", included via vite');
+
+  export default {
+    methods: {
+      trocaTela() {
+        this.$router.push('/button');
+      },
+    },
+  }
 </script>

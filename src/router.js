@@ -1,0 +1,18 @@
+import { createMemoryHistory, createRouter } from 'vue-router'
+
+import HomeView from './pages/HomeView.vue';
+import AboutView from './pages/AboutView.vue';
+import ButtonView from './pages/ButtonView.vue';
+
+const routes = [
+  { path: '/', component: HomeView },
+  { path: '/about', component: AboutView },
+  { path: '/button', component: ButtonView },
+]
+
+const router = createRouter({
+  history: createMemoryHistory(),
+  routes,
+})
+
+export default router
