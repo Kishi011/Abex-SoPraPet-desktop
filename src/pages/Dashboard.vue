@@ -1,6 +1,7 @@
 <template>
   <v-app>
-    <v-container>
+    <v-container max-width="1000">
+      <h1 class="mb-5">Dashboard</h1>
       <!-- Informações de Lucros do Mês -->
       <v-row>
         <v-col cols="12">

@@ -59,23 +59,25 @@
       </v-container>
     </v-navigation-drawer>
     <v-main>
-      <component is="Dashboard"/>
+      <component :is="page"/>
     </v-main>
   </v-app>
 </template>
 
 <script>
 import Dashboard from '../pages/Dashboard.vue';
+import Servicos from '../pages/Servicos.vue';
 
 export default {
   name: 'DefaultLayout',
-  components: { Dashboard },
+  components: { Dashboard, Servicos },
 
   data() {
     return {
       currentActive: 'dashboard',
       drawer: true,
       rail: true,
+      page: 'Dashboard',
     }
   },
 
@@ -84,7 +86,28 @@ export default {
       document.getElementById('item-' + this.currentActive).classList.remove('active');
       document.getElementById('item-' + newActive).classList.add('active');
 
-      this.currentActive = newActive
+      this.currentActive = newActive;
+
+      switch (newActive) {
+        case 'dashboard':
+          this.page = 'Dashboard';
+          break;
+
+        case 'meus-servicos':
+          this.page = 'Servicos';
+          break;
+
+        case 'agendamentos':
+          this.page = 'Agendamentos';
+          break;
+
+        case 'configuracoes':
+          this.page = 'Configuracoes';
+          break;
+      
+        default:
+          break;
+      }
     },
   },
 }
