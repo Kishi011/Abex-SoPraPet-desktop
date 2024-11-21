@@ -58,20 +58,18 @@
         </v-list>
       </v-container>
     </v-navigation-drawer>
-
     <v-main>
-      <component is="Servicos"/>
+      <component is="Dashboard"/>
     </v-main>
   </v-app>
 </template>
 
 <script>
-import Servicos from '../pages/Servicos.vue';
+import Dashboard from '../pages/Dashboard.vue';
 
 export default {
   name: 'DefaultLayout',
-
-  components: { Servicos },
+  components: { Dashboard },
 
   data() {
     return {
