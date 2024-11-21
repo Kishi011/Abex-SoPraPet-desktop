@@ -1,6 +1,5 @@
 <template>
   <v-app class="lexend-font">
-
     <v-navigation-drawer rail rail-width="150" width="25%" expand-on-hover permanent class="drawer" 
       @update:rail="rail = !rail"
     >
@@ -22,7 +21,7 @@
 
           <v-list-item id="item-dashboard" class="item rounded-xl pa-5 mb-2 active" @click="changePage('dashboard')">
             <div class="d-flex align-center">
-              <v-icon size="50">mdi-view-dashboard</v-icon>
+              <v-icon size="30">mdi-view-dashboard</v-icon>
               <h2 v-if="!rail" class="ml-5">Dashboard</h2>
             </div>
           </v-list-item>
@@ -33,14 +32,14 @@
 
           <v-list-item id="item-meus-servicos" class="item rounded-xl pa-5 mb-2" @click="changePage('meus-servicos')">
             <div class="d-flex align-center">
-              <v-icon size="50">mdi-dog-service</v-icon>
+              <v-icon size="30">mdi-dog-service</v-icon>
               <h2 v-if="!rail" class="ml-5">Meus Serviços</h2>
             </div>
           </v-list-item>
 
           <v-list-item id="item-agendamentos" class="item rounded-xl pa-5 mb-2" @click="changePage('agendamentos')">
             <div class="d-flex align-center">
-              <v-icon size="50">mdi-calendar-multiple-check</v-icon>
+              <v-icon size="30">mdi-calendar-multiple-check</v-icon>
               <h2 v-if="!rail" class="ml-5">Agendamentos</h2>
             </div>
           </v-list-item>
@@ -51,7 +50,7 @@
 
           <v-list-item id="item-configuracoes" class="item rounded-xl pa-5" @click="changePage('configuracoes')">
             <div class="d-flex align-center">
-              <v-icon size="50">mdi-cog-outline</v-icon>
+              <v-icon size="30">mdi-cog-outline</v-icon>
               <h2 v-if="!rail" class="ml-5">Configuraçoes</h2>
             </div>
           </v-list-item>
@@ -70,7 +69,6 @@ import Dashboard from '../pages/Dashboard.vue';
 
 export default {
   name: 'DefaultLayout',
-
   components: { Dashboard },
 
   data() {
@@ -101,12 +99,12 @@ export default {
   }
   
   h2 {
-    font-size: 20px;
+    font-size: 16px;
     font-weight: normal;
   }
 
   span {
-    font-size: 14px;
+    font-size: 12px;
   }
 
   .item {
