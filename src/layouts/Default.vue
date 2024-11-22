@@ -7,7 +7,7 @@
 
         <div class="d-flex align-center justify-start mb-3">
           <div style="width: 75px;">
-            <v-img src="../../public/Marca-01.png" style="border: 1px solid #ccc; border-radius: 15px;"></v-img>
+            <v-img src="/Marca-01.png" style="border: 1px solid #ccc; border-radius: 15px;"></v-img>
           </div>
           <div v-if="!rail" class="ml-3">
             <h2 style="font-weight: bold;">SóPraPet</h2>
