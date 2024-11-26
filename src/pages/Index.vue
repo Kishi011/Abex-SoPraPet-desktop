@@ -1,96 +1,189 @@
 <template>
-  <v-container>
-    <h1>💖 Hello World!</h1>
-      <p>Welcome to your Electron application.</p>
+  <v-container class="lexend-font d-flex align-center flex-column h-screen">
+    
+    <v-row class="w-100 justify-center">
+      <v-img
+        src="Marca-01.png"
+        max-width="200"
+      ></v-img>
+    </v-row>
+
+    <v-row class="w-100 h-100 flex-column">
+      <v-col v-if="isLogin">
+
+        <h1 class="text-center">Login Petshop</h1>
+        <h2 class="text-center mb-10">Informe o seu CNPJ para entrar no sistema</h2>
   
-      <v-card class="mt-5 p-5">
-        <v-list>
-          <v-list-item
-            href="https://vuetifyjs.com/en/"
-            append-icon="mdi-vuetify"
-          >
-            Documentação do Vuetify
-          </v-list-item>
-          <v-list-item
-            href="https://www.electronjs.org/pt/"
-            append-icon="mdi-electron-framework"
-          >
-            Documentação do Electron
-          </v-list-item>
-          <v-list-item
-            href="https://vuejs.org/guide/introduction.html"
-            append-icon="mdi-vuejs"
-          >
-            Documentação do Vue 3
-          </v-list-item>
-          <v-list-item
-            href="https://router.vuejs.org"
-            append-icon="mdi-vuejs"
-          >
-            Documentação do Vue Router
-          </v-list-item>
-          <v-list-item
-            href="https://axios-http.com/ptbr/docs/intro"
-          >
-            Documentação do Axios
-          </v-list-item>
-        </v-list>
-      </v-card>
+        <v-text-field
+          label="CNPJ"
+          single-line
+          :rules="[rules.cnpj]"
+        ></v-text-field>
+
+        <v-text-field
+          label="Senha"
+          single-line
+          :type="show ? 'text' : 'password'"
+          :append-inner-icon="show ? 'mdi-eye' : 'mdi-eye-off'"
+          @click:appendInner="show = !show"
+        ></v-text-field>
+
+        <v-btn
+          flat
+          color="#F8623F"
+          class="w-100 mb-5"
+          @click="login"
+        >Entrar</v-btn>
+
+        <p class="text-center">
+          Não tem uma conta? <span v-on:click="this.troca">Faça seu cadastro aqui</span>
+        </p>
+
+      </v-col>
+
+      <v-col v-else>
+        <h1 class="text-center">Cadastro Petshop</h1>
+        <h2 class="text-center mb-10">Preencha todos os campos</h2>
+
+        <v-window v-model="window">
+          <v-window-item key="0">
   
-      <main>
-        <h1>Teste</h1>
-        <RouterLink class="mr-2" to="/">Home</RouterLink>
-        <RouterLink class="mr-2" to="/about">About</RouterLink>
-        <div class="mb-2">
-          <v-btn @click="navigatesTo('/button')">Esse botão troca de View</v-btn>
+            <v-text-field
+              label="CNPJ"
+              single-line
+              :rules="[rules.cnpj]"
+            ></v-text-field>
+  
+            <v-text-field
+              label="Senha"
+              single-line
+              :type="show ? 'text' : 'password'"
+              :append-inner-icon="show ? 'mdi-eye' : 'mdi-eye-off'"
+              @click:appendInner="show = !show"
+            ></v-text-field>
+
+          </v-window-item>
+
+          <v-window-item key="1">
+  
+            <v-text-field
+              label="Nome do Petshop"
+              single-line
+            ></v-text-field>
+
+            <v-text-field
+              label="Telefone"
+              single-line
+              :rules="[rules.telefone]"
+            ></v-text-field>
+
+            <v-row>
+              <v-col cols="8">
+                <v-text-field
+                  label="CEP"
+                  single-line
+                  :rules="[rules.cep]"
+                ></v-text-field>
+              </v-col>
+              <v-col>
+                <v-text-field
+                  label="Nº Residência"
+                  single-line
+                ></v-text-field>
+              </v-col>
+            </v-row>
+
+            <v-text-field
+              label="Email"
+              :rules="[rules.email]"
+            ></v-text-field>
+
+          </v-window-item>
+        </v-window>
+        
+        <div class="mb-5">
+          <v-btn
+            v-if="window > 0"
+            flat
+            @click="window--"
+          ><v-icon>mdi-arrow-left</v-icon></v-btn>
+  
+          <v-btn
+            flat
+            color="#F8623F"
+            :style="{ width: window > 0 ? '92%' : '100%' }"
+            @click="window === 0 ? window++ : login()"
+          >{{ window === 0 ? 'Próximo' : 'Criar conta' }}</v-btn>
         </div>
-        <div class="mb-2">
-          <v-btn @click="goBack">Esse botão volta para a tela anterior</v-btn>
-        </div>
-        <div class="mb-2">
-          <v-btn @click="goForth">Esse botão avança para a tela que você estava</v-btn>
-        </div>
-        <RouterView />
-        <div class="mb-2">
-          <v-btn @click="requisicao">Teste de requisição</v-btn>
-        </div>
-        <h2>{{ response }}</h2>
-      </main>
+
+        <p class="text-center">
+          Já possui uma conta? <span v-on:click="this.troca">Faça seu login aqui</span>
+        </p>
+      </v-col>
+    </v-row>
   </v-container>
 </template>
-
 <script>
-  console.log('This message is being logged by "App.vue", included via vite');
+export default {
+  name: 'IndexPage',
 
-  export default {
-    data() {
-      return {
-        response: {},
+  data() {
+    return {
+      isLogin: true,
+      show: false,
+      window: 0,
+      rules: {
+        cnpj: (v) => /^\d{2}\.\d{3}\.\d{3}\/\d{4}\-\d{2}$/.test(v)||'Formato de CNPJ inválido',
+        telefone: (v) => /^\d{4}\-\d{4}$/.test(v)||'Telefone inválido',
+        cep: (v) => /^\d{5}\-\d{3}$/.test(v)||'CEP inválido',
+        email: (v) => /^[a-z0-9.]+@[a-z0-9]+\.[a-z]+\.([a-z]+)?$/i.test(v)||'Email não corresponde com o formato válido'
       }
+    }
+  },
+
+  methods: {
+    troca() {
+      console.log(this.isLogin);
+      this.isLogin = !this.isLogin;
+    },
+    
+    validate() {
+      console.log('aqui faz a função para validar o usuário');
+      return true;
     },
 
-    methods: {
-      navigatesTo(page) {
-        this.$router.push(page);
-      },
-
-      goBack() {
-        this.$router.go(-1);
-      },
-
-      goForth() {
-        this.$router.go(1);
-      },
-
-      requisicao() {
-        this.$axios.get('/pokemon/pikachu')
-          .then((res) => {
-            this.response = res
-          })
-          .catch((error) => {
-            console.log(error);
-          });
-      },
-    },
+    login() {
+      if(this.validate()) {
+        this.$router.push({ path: '/app' });
+      }
+    }
   }
+}
 </script>
+
+<style>
+  .lexend-font {
+    font-family: "Lexend", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: normal;
+    font-style: normal;
+  }
+
+  .v-text-field input {
+    font-size: 16px;
+  }
+
+  h1 {
+    font-size: 20px;
+  }
+
+  p span {
+    text-decoration: underline;
+    color: #799FFF;
+    font-size: 16px;
+  }
+  
+  p span:hover {
+    cursor: pointer;
+  }
+</style>
