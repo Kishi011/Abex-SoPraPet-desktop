@@ -4,6 +4,8 @@ import DefaultLayout from '../layouts/Default.vue';
 import Index from '../pages/Index.vue';
 
 
+
+
 const routes = [
   {
     path: '/',
