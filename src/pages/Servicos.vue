@@ -1,6 +1,6 @@
 <template>
   <v-container max-width="1000">
-    <h1>Meus Serviços</h1>
+    <h1 class="mb-5">Meus Serviços</h1>
 
     <v-tabs v-model="tab" class="mb-5" height="55">
 

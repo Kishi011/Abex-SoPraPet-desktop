@@ -67,12 +67,13 @@
 </template>
 
 <script>
+import Agendamentos from '../pages/Agendamentos.vue';
 import Dashboard from '../pages/Dashboard.vue';
 import Servicos from '../pages/Servicos.vue';
 
 export default {
   name: 'DefaultLayout',
-  components: { Dashboard, Servicos },
+  components: { Dashboard, Servicos, Agendamentos },
 
   data() {
     return {
