@@ -60,9 +60,91 @@
         </v-list>
       </v-container>
     </v-navigation-drawer>
+
     <v-main style="margin-left: 115px;">
       <component :is="page"/>
     </v-main>
+
+    <v-card
+      flat
+      class="position-fixed bottom-0"
+      style="right: 50px; border-radius: 15px 15px 0 0; border: 1px solid #ccc;"
+      width="350"
+    >
+      <v-card-title
+        class="d-flex align-center justify-space-between pl-5 pr-5 pt-2 pb-2 card-msg-title"
+        style="border-bottom: 1px solid #ccc;"
+        @click="expandMensagens = !expandMensagens"
+      >
+        <h1 class="d-inline">Mensagens</h1>
+        <v-spacer></v-spacer>
+        <v-icon>{{ expandMensagens ? 'mdi-chevron-down' : 'mdi-chevron-up' }}</v-icon>
+      </v-card-title>
+      
+      <v-container v-if="expandMensagens" class="pl-0 pr-0 card-msg-conteudo" max-height="400" style="overflow-y: scroll;">
+        
+        <div class="d-flex align-center" style="height: 50px;">
+          <v-avatar class="mr-5"><v-icon>mdi-account</v-icon></v-avatar>
+          <h2 class="d-inline">Vinicius</h2>
+        </div>
+
+        <div class="d-flex align-center" style="height: 50px;">
+          <v-avatar class="mr-5"><v-icon>mdi-account</v-icon></v-avatar>
+          <h2 class="d-inline">João</h2>
+        </div>
+
+        <div class="d-flex align-center" style="height: 50px;">
+          <v-avatar class="mr-5"><v-icon>mdi-account</v-icon></v-avatar>
+          <h2 class="d-inline">Eduardo</h2>
+        </div>
+
+        <div class="d-flex align-center" style="height: 50px;">
+          <v-avatar class="mr-5"><v-icon>mdi-account</v-icon></v-avatar>
+          <h2 class="d-inline">Paulo</h2>
+        </div>
+
+        <div class="d-flex align-center" style="height: 50px;">
+          <v-avatar class="mr-5"><v-icon>mdi-account</v-icon></v-avatar>
+          <h2 class="d-inline">Vinicius</h2>
+        </div>
+
+        <div class="d-flex align-center" style="height: 50px;">
+          <v-avatar class="mr-5"><v-icon>mdi-account</v-icon></v-avatar>
+          <h2 class="d-inline">João</h2>
+        </div>
+
+        <div class="d-flex align-center" style="height: 50px;">
+          <v-avatar class="mr-5"><v-icon>mdi-account</v-icon></v-avatar>
+          <h2 class="d-inline">Eduardo</h2>
+        </div>
+
+        <div class="d-flex align-center" style="height: 50px;">
+          <v-avatar class="mr-5"><v-icon>mdi-account</v-icon></v-avatar>
+          <h2 class="d-inline">Paulo</h2>
+        </div>
+
+        <div class="d-flex align-center" style="height: 50px;">
+          <v-avatar class="mr-5"><v-icon>mdi-account</v-icon></v-avatar>
+          <h2 class="d-inline">Vinicius</h2>
+        </div>
+
+        <div class="d-flex align-center" style="height: 50px;">
+          <v-avatar class="mr-5"><v-icon>mdi-account</v-icon></v-avatar>
+          <h2 class="d-inline">João</h2>
+        </div>
+
+        <div class="d-flex align-center" style="height: 50px;">
+          <v-avatar class="mr-5"><v-icon>mdi-account</v-icon></v-avatar>
+          <h2 class="d-inline">Eduardo</h2>
+        </div>
+
+        <div class="d-flex align-center" style="height: 50px;">
+          <v-avatar class="mr-5"><v-icon>mdi-account</v-icon></v-avatar>
+          <h2 class="d-inline">Paulo</h2>
+        </div>
+
+      </v-container>
+    </v-card>
   </v-app>
 </template>
 
@@ -81,6 +163,7 @@ export default {
       currentActive: 'dashboard',
       drawer: true,
       rail: true,
+      expandMensagens: false,
       page: 'Dashboard',
     }
   },
@@ -150,5 +233,10 @@ export default {
 
   .drawer {
     box-shadow: 0px 4px 4px rgba(0, 0, 0, .25) !important;
+  }
+
+  .card-msg-title:hover {
+    cursor: pointer;
+    background-color: #eee;
   }
 </style>
