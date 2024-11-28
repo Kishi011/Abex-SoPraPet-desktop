@@ -1,5 +1,5 @@
 <template>
-  <v-container class="lexend-font d-flex align-center flex-column h-screen">
+  <v-container class="lexend-font d-flex align-center flex-column" max-width="500">
     
     <v-row class="w-100 justify-center">
       <v-img
@@ -111,7 +111,7 @@
           <v-btn
             flat
             color="#F8623F"
-            :style="{ width: window > 0 ? '92%' : '100%' }"
+            :style="{ width: window > 0 ? '85.59%' : '100%' }"
             @click="window === 0 ? window++ : login()"
           >{{ window === 0 ? 'Próximo' : 'Criar conta' }}</v-btn>
         </div>
