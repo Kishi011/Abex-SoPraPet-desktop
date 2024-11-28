@@ -67,10 +67,6 @@
 </template>
 
 <style>
-  .agendamento-style h1 {
-    font-size: 24px;
-  }
-
   .agendamento-style h2 {
     font-size: 16px;
     font-weight: bold;

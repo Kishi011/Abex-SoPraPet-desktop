@@ -68,12 +68,13 @@
 
 <script>
 import Agendamentos from '../pages/Agendamentos.vue';
+import Configuracoes from '../pages/Configuracoes.vue';
 import Dashboard from '../pages/Dashboard.vue';
 import Servicos from '../pages/Servicos.vue';
 
 export default {
   name: 'DefaultLayout',
-  components: { Dashboard, Servicos, Agendamentos },
+  components: { Dashboard, Servicos, Agendamentos, Configuracoes },
 
   data() {
     return {
