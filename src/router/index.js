@@ -1,20 +1,42 @@
 import { createMemoryHistory, createRouter } from 'vue-router'
 
-import DefaultLayout from '../layouts/Default.vue';
-import Index from '../pages/Index.vue';
-
-
-
-
 const routes = [
   {
     path: '/',
-    component: Index,
+    component: () => import('../pages/Index.vue'),
   },
   {
-    path: '/app',
-    component: DefaultLayout,
-  }
+    path: '/dashboard',
+    components: {
+      default: () => import('../pages/Dashboard.vue'),
+      navbar: () => import('../components/NavBar.vue'),
+      cardmsg: () => import('../components/CardMensagens.vue'),
+    },
+  },
+  {
+    path: '/servicos',
+    components: {
+      default: () => import('../pages/Servicos.vue'),
+      navbar: () => import('../components/NavBar.vue'),
+      cardmsg: () => import('../components/CardMensagens.vue'),
+    },
+  },
+  {
+    path: '/agendamentos',
+    components: {
+      default: () => import('../pages/Agendamentos.vue'),
+      navbar: () => import('../components/NavBar.vue'),
+      cardmsg: () => import('../components/CardMensagens.vue'),
+    },
+  },
+  {
+    path: '/config',
+    components: {
+      default: () => import('../pages/Configuracoes.vue'),
+      navbar: () => import('../components/NavBar.vue'),
+      cardmsg: () => import('../components/CardMensagens.vue'),
+    },
+  },
 ];
 
 const router = createRouter({

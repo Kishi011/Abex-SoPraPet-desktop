@@ -1,6 +1,6 @@
 <template>
-  <v-app>
-    <v-container max-width="1000">
+  <v-main style="margin-left: 100px;">
+    <v-container class="lexend-font" max-width="800">
       <h1 class="mb-5">Dashboard</h1>
       <!-- Informações de Lucros do Mês -->
       <v-row>
@@ -20,7 +20,7 @@
           </v-card>
         </v-col>
       </v-row>
-
+  
       <!-- Vendas Feitas -->
       <v-row>
         <v-col cols="12">
@@ -32,7 +32,7 @@
           </v-card>
         </v-col>
       </v-row>
-
+  
       <!-- Serviços Prestados -->
       <v-row>
         <v-col cols="12">
@@ -44,7 +44,7 @@
           </v-card>
         </v-col>
       </v-row>
-
+  
       <!-- Gráfico de Vendas e Lucros -->
       <v-row>
         <v-col cols="12">
@@ -57,5 +57,24 @@
         </v-col>
       </v-row>
     </v-container>
-  </v-app>
+  </v-main>
 </template>
+
+<script>
+export default {
+  name: 'DashboardPage',
+
+  created() {
+    console.log('Pagina Dashboard');
+  },
+}
+</script>
+
+<style>
+  .lexend-font {
+    font-family: "Lexend", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: normal;
+    font-style: normal;
+  }
+</style>

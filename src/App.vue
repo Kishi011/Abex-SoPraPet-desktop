@@ -1,8 +1,7 @@
 <template>
-  <div>
+  <v-app>
     <router-view />
-  </div>
+    <router-view name="navbar"/>
+    <router-view name="cardmsg"/>
+  </v-app>
 </template>
-
-<script>
-</script>

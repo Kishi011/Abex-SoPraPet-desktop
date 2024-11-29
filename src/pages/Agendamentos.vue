@@ -1,72 +1,91 @@
 <template>
-  <v-container class="agendamento-style" max-width="1000">
-    <h1 class="mb-5">Agendamentos</h1>
-
-    <section>
-
-      <div class="d-flex align-center pa-2 mb-5">
-        <v-img
-          class="rounded"
-          src="/Marca-01.png"
-          style="border: 1px solid #ccc"
-          width="100"
-        ></v-img>
-
-        <div class="d-flex flex-column w-100 pl-5 pr-5">
-          <div class="d-flex align-center mb-2">
-            <h2>Agendamento: <span>Manicure</span></h2>
-
-            <v-spacer></v-spacer>
-
-            <span>17/11</span>
-          </div>
-
-          <span>Você tem um novo agendamento marcado para dia 17/11.</span>
-
-          <div class="d-flex justify-end">
-            <v-btn
-              flat
-              x-large
-              max-width="300"
-            >Marcar no Google Agenda</v-btn>
-          </div>
-        </div>
-      </div>
-
-      <div class="d-flex align-center pa-2 mb-5 ">
-        <v-img
-          class="rounded"
-          src="/Marca-01.png"
-          style="border: 1px solid #ccc"
-          width="100"
-        ></v-img>
-
-        <div class="d-flex flex-column w-100 pl-5 pr-5">
-          <div class="d-flex align-center mb-2">
-            <h2>Agendamento: <span>Vacinação</span></h2>
-
-            <v-spacer></v-spacer>
-
-            <span>15/11</span>
-          </div>
-
-          <span>Você tem um novo agendamento marcado para dia 15/11.</span>
-
-          <div class="d-flex justify-end">
-            <v-btn
-              flat
-              x-large
-              max-width="300"
-            >Marcar no Google Agenda</v-btn>
+  <v-main style="margin-left: 100px;">
+    <v-container class="lexend-font agendamento-style" max-width="800">
+      <h1 class="mb-5">Agendamentos</h1>
+  
+      <section>
+  
+        <div class="d-flex align-center pa-2 mb-5">
+          <v-img
+            class="rounded"
+            src="/Marca-01.png"
+            style="border: 1px solid #ccc"
+            width="100"
+          ></v-img>
+  
+          <div class="d-flex flex-column w-100 pl-5 pr-5">
+            <div class="d-flex align-center mb-2">
+              <h2>Agendamento: <span>Manicure</span></h2>
+  
+              <v-spacer></v-spacer>
+  
+              <span>17/11</span>
+            </div>
+  
+            <span>Você tem um novo agendamento marcado para dia 17/11.</span>
+  
+            <div class="d-flex justify-end">
+              <v-btn
+                flat
+                x-large
+                max-width="300"
+              >Marcar no Google Agenda</v-btn>
+            </div>
           </div>
         </div>
-      </div>
-
-    </section>
-  </v-container>
+  
+        <div class="d-flex align-center pa-2 mb-5 ">
+          <v-img
+            class="rounded"
+            src="/Marca-01.png"
+            style="border: 1px solid #ccc"
+            width="100"
+          ></v-img>
+  
+          <div class="d-flex flex-column w-100 pl-5 pr-5">
+            <div class="d-flex align-center mb-2">
+              <h2>Agendamento: <span>Vacinação</span></h2>
+  
+              <v-spacer></v-spacer>
+  
+              <span>15/11</span>
+            </div>
+  
+            <span>Você tem um novo agendamento marcado para dia 15/11.</span>
+  
+            <div class="d-flex justify-end">
+              <v-btn
+                flat
+                x-large
+                max-width="300"
+              >Marcar no Google Agenda</v-btn>
+            </div>
+          </div>
+        </div>
+  
+      </section>
+    </v-container>
+  </v-main>
 </template>
 
+<script>
+export default {
+  name: 'AgendamentosPage',
+
+  created() {
+    console.log('Pagina Agendamentos');
+  },
+}
+</script>
+
 <style>
+  .lexend-font {
+    font-family: "Lexend", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: normal;
+    font-style: normal;
+  }
+
   .agendamento-style h2 {
     font-size: 16px;
     font-weight: bold;
