@@ -7,7 +7,23 @@
 
         <div class="d-flex align-center justify-start mb-3">
           <div style="width: 75px;">
-            <v-img src="/Marca-01.png" style="border: 1px solid #ccc; border-radius: 15px;"></v-img>
+            <v-menu>
+              <template v-slot:activator="{ props }">
+                <v-btn class="pa-0 w-100" height="75" flat v-bind="props" style="border: 1px solid #ccc; border-radius: 15px;">
+                  <v-img width="75" src="/Marca-01.png"></v-img>
+                </v-btn>
+              </template>
+              <v-card>
+                <v-list>
+                  <v-list-item link to="/">
+                    <v-row align-center>
+                      <v-col sm="3"><v-icon>mdi-logout</v-icon></v-col>
+                      <v-col>Log out</v-col>
+                    </v-row>
+                  </v-list-item>
+                </v-list>
+              </v-card>
+            </v-menu>
           </div>
           <div v-if="!rail" class="ml-3">
             <h2 style="font-weight: bold;">SóPraPet</h2>
