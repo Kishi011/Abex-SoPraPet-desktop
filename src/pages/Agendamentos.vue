@@ -71,10 +71,6 @@
 <script>
 export default {
   name: 'AgendamentosPage',
-
-  created() {
-    console.log('Pagina Agendamentos');
-  },
 }
 </script>
 

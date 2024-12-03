@@ -152,10 +152,6 @@ export default {
     }
   },
 
-  created() {
-    console.log('Pagina Index');
-  },
-
   methods: {
     troca() {
       this.isLogin = !this.isLogin;

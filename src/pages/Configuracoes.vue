@@ -78,10 +78,6 @@ export default {
     }
   },
 
-  created() {
-    console.log('Pagina Config');
-  },
-
 }
 </script>
 
