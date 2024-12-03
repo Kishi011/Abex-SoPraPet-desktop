@@ -44,11 +44,13 @@
       <v-tabs-window v-model="tab">
   
         <v-tabs-window-item value="0">
-          <v-card class="card-servico pa-2" flat>
+
+          <v-card v-for="s in servicos" :key="s" class="card-servico pa-2 mb-5" flat>
             <section class="pa-2 d-flex align-center">
-              <span class="card-span mr-2">Banho e Tosa</span>
-              <span class="tag tag-yellow">Não Publicado</span>
-              <v-icon @click="edit">mdi-pencil-box-outline</v-icon>
+              <span class="card-span mr-2">{{ s.nome }}</span>
+              <span v-if="s.statusPublicado" class="tag tag-green" v-on:click="s.statusPublicado = !s.statusPublicado">Publicado</span>
+              <span v-else class="tag tag-yellow" v-on:click="s.statusPublicado = !s.statusPublicado">Não Publicado</span>
+              <v-icon @click="editServico">mdi-pencil-box-outline</v-icon>
               
               <v-spacer></v-spacer>
   
@@ -64,14 +66,17 @@
               <span class="tag tag-blue">Tosa</span>
             </section>
           </v-card>
+
         </v-tabs-window-item>
   
         <v-tabs-window-item value="1">
           <v-text-field
+            v-model="servico.nome"
             label="Nome do Serviço"
           ></v-text-field>
   
           <v-textarea
+            v-model="servico.descricao"
             label="Descrição"
             no-resize
           ></v-textarea>
@@ -97,10 +102,22 @@
             :items="['Cachorro', 'Gato', 'Pato', 'Guaxinim', 'Furão', 'Fuinha']"
           ></v-autocomplete>
   
-          <v-autocomplete
-            label="Tipo do Serviço"
-            :items="['Banho', 'Tosa', 'Vanicação', 'Consulta', 'Castração', 'Cirurgia']"
-          ></v-autocomplete>
+          <div class="d-flex align-center">
+            <v-autocomplete
+              class="mr-5"
+              label="Tipo do Serviço"
+              :items="['Banho', 'Tosa', 'Vanicação', 'Consulta', 'Castração', 'Cirurgia']"
+              width="250"
+            ></v-autocomplete>
+
+            <v-text-field
+              v-model="servico.preco"
+              label="Preço"
+              type="number"
+              width="250"
+            ></v-text-field>
+          </div>
+
   
           <div class="d-flex justify-end">
             <v-btn size="large" color="#F8623F" flat @click="dialog = true">Criar</v-btn>
@@ -109,6 +126,7 @@
   
       </v-tabs-window>
     </v-container>
+
     <v-dialog v-model="dialog" max-width="700">
       <v-card>
         
@@ -148,21 +166,58 @@ export default {
     return {
       tab: 0,
       dialog: false,
+      servico: {},
+      servicos: [],
     }
   },
 
-  created() {
-    console.log('Pagina Servicos');
+  async created() {
+    await this.getServicos();
   },
 
   methods: {
-    confirm() {
+    async confirm() {
       this.dialog = false;
+      await this.createServico();
       this.tab = 0;
     },
 
-    edit() {
+    editServico() {
       this.tab = 1;
+    },
+
+    async getServicos() {
+      await this.$axios.get('/servicos')
+        .then((result) => {
+          const { data } = result;
+
+          if(data.type === 'success') {
+            this.servicos = data.data;
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    },
+
+    async createServico() {
+      const req = {
+          nome: this.servico.nome,
+          descricao: this.servico.descricao,
+          preco: Number(this.servico.preco),
+        };
+
+      await this.$axios.post('/servicos/persist', req)
+        .then(async (response) => {
+          const { data } = response;
+          
+          if(data.type === 'success') {
+            await this.getServicos();
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     },
   },
 }
@@ -177,6 +232,11 @@ export default {
   }
 
   .card-span {
+    max-width: 300px;
+    text-wrap: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    
     font-size: 16px;
   }
 
@@ -202,6 +262,20 @@ export default {
     color: #A0C300;
     background-color: #FFFEC9;
     border: 1px solid #D3E812;
+  }
+
+  .tag-green {
+    color: #08A900;
+    background-color: #B7FFB4;
+    border: 1px solid #00930C;
+  }
+
+  .tag-yellow:hover {
+    cursor: pointer;
+  }
+
+  .tag-green:hover {
+    cursor: pointer;
   }
 
   .h1-dialog {

@@ -61,12 +61,9 @@
 </template>
 
 <script>
+
 export default {
   name: 'DashboardPage',
-
-  created() {
-    console.log('Pagina Dashboard');
-  },
 }
 </script>
 

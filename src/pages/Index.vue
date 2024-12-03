@@ -16,12 +16,14 @@
             <h2 class="text-center mb-10">Informe o seu CNPJ para entrar no sistema</h2>
       
             <v-text-field
+              v-model="petshop.cnpj"
               label="CNPJ"
               single-line
               :rules="[rules.cnpj]"
             ></v-text-field>
     
             <v-text-field
+              v-model="petshop.senha"
               label="Senha"
               single-line
               :type="show ? 'text' : 'password'"
@@ -50,12 +52,14 @@
               <v-window-item key="0">
       
                 <v-text-field
+                  v-model="petshop.cnpj"
                   label="CNPJ"
                   single-line
                   :rules="[rules.cnpj]"
                 ></v-text-field>
       
                 <v-text-field
+                  v-model="petshop.senha"
                   label="Senha"
                   single-line
                   :type="show ? 'text' : 'password'"
@@ -68,11 +72,13 @@
               <v-window-item key="1">
       
                 <v-text-field
+                  v-model="petshop.nome"
                   label="Nome do Petshop"
                   single-line
                 ></v-text-field>
     
                 <v-text-field
+                  v-model="petshop.telefone"
                   label="Telefone"
                   single-line
                   :rules="[rules.telefone]"
@@ -95,6 +101,7 @@
                 </v-row>
     
                 <v-text-field
+                  v-model="petshop.email"
                   label="Email"
                   :rules="[rules.email]"
                 ></v-text-field>
@@ -113,7 +120,7 @@
                 flat
                 color="#F8623F"
                 :style="{ width: window > 0 ? '85.59%' : '100%' }"
-                @click="window === 0 ? window++ : login()"
+                @click="window === 0 ? window++ : cadastra()"
               >{{ window === 0 ? 'Próximo' : 'Criar conta' }}</v-btn>
             </div>
     
@@ -132,6 +139,7 @@ export default {
 
   data() {
     return {
+      petshop: {},
       isLogin: true,
       show: false,
       window: 0,
@@ -140,7 +148,7 @@ export default {
         telefone: (v) => /^\d{4}\-\d{4}$/.test(v)||'Telefone inválido',
         cep: (v) => /^\d{5}\-\d{3}$/.test(v)||'CEP inválido',
         email: (v) => /^[a-z0-9.]+@[a-z0-9]+\.[a-z]+\.([a-z]+)?$/i.test(v)||'Email não corresponde com o formato válido'
-      }
+      },
     }
   },
 
@@ -150,20 +158,51 @@ export default {
 
   methods: {
     troca() {
-      console.log(this.isLogin);
       this.isLogin = !this.isLogin;
     },
-    
-    validate() {
-      console.log('aqui faz a função para validar o usuário');
-      return true;
+
+    async login() {
+      const req = {
+        cnpj: this.petshop.cnpj,
+        senha: this.petshop.senha,
+      };
+      await this.$axios.post('/petshop/login', req)
+        .then((result) => {
+          const { data } = result;
+
+          if(data.type === 'success') {
+            console.log(data.message);
+            this.$router.push({ path: 'dashboard' });
+          }
+
+          console.log(data.message);
+        }).catch((err) => {
+          console.log(err);
+        });
     },
 
-    login() {
-      if(this.validate()) {
-        this.$router.push({ path: 'dashboard' });
-      }
-    }
+    async cadastra() {
+      const req = {
+        nome: this.petshop.nome,
+        cnpj: this.petshop.cnpj,
+        email: this.petshop.email,
+        telefone: this.petshop.telefone,
+        senha: this.petshop.senha,
+      };
+      await this.$axios.post('/petshop/persist', req)
+        .then((result) => {
+          const { data } = result;
+
+          if(data.type === 'success') {
+            console.log(data.message);
+            this.$router.push({ path: 'dashboard' });
+          }
+
+          console.log(data.message);
+        }).catch((err) => {
+          console.log(err);
+        });
+    },
   }
 }
 </script>
