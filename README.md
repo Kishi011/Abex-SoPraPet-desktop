@@ -10,3 +10,7 @@
 ```
 npm i
 ```
+##### Para rodar o programa usar o comando
+```
+npm start
+```
