@@ -6,13 +6,13 @@
       <v-row>
         <v-col cols="12">
           <v-card class="rounded-lg">
-            <v-card-title>Lucros do Mês</v-card-title>
+            <v-card-title>Ganhos do Mês</v-card-title>
             <v-card-text>
               <div>
                 <v-row>
                   <v-col class="d-flex align-center">
                     <v-icon size="30" class="mr-2">mdi-cash</v-icon>
-                    <h2 class="d-inline">R$ 50.00</h2>
+                    <h2 class="d-inline">R$ 25.481</h2>
                   </v-col>
                 </v-row>
               </div>
@@ -21,17 +21,7 @@
         </v-col>
       </v-row>
   
-      <!-- Vendas Feitas -->
-      <v-row>
-        <v-col cols="12">
-          <v-card class="rounded-lg">
-            <v-card-title>Vendas Feitas</v-card-title>
-            <v-card-text>
-              Vendas Aqui
-            </v-card-text>
-          </v-card>
-        </v-col>
-      </v-row>
+      
   
       <!-- Serviços Prestados -->
       <v-row>
@@ -39,7 +29,12 @@
           <v-card class="rounded-lg">
             <v-card-title>Serviços Prestados</v-card-title>
             <v-card-text>
-              Serviços Aqui
+              <v-card class="mr-2 pa-2 d-inline">Banho: 5</v-card>
+              <v-card class="mr-2 pa-2 d-inline">Tosa: 4</v-card>
+              <v-card class="mr-2 pa-2 d-inline">Vacinação: 2</v-card>
+              <v-card class="mr-2 pa-2 d-inline">Consulta: 3</v-card>
+              <v-card class="mr-2 pa-2 d-inline">Castração: 0</v-card>
+              <v-card class="mr-2 pa-2 d-inline">Cirurgia: 0</v-card>
             </v-card-text>
           </v-card>
         </v-col>
@@ -50,9 +45,9 @@
         <v-col cols="12">
           <v-card class="rounded-lg">
             <v-card-title>Gráfico de Vendas e Lucros</v-card-title>
-            <v-card-text>
-              Grafico Aqui
-            </v-card-text>
+              <v-card-text>
+                <BarChart />
+              </v-card-text>
           </v-card>
         </v-col>
       </v-row>
@@ -61,9 +56,10 @@
 </template>
 
 <script>
-
+import BarChart from '../components/BarChart.vue'
 export default {
   name: 'DashboardPage',
+  components: { BarChart }
 }
 </script>
 
