@@ -45,27 +45,46 @@
   
         <v-tabs-window-item value="0">
 
-          <v-card v-for="s in servicos" :key="s" class="card-servico pa-2 mb-5" flat>
-            <section class="pa-2 d-flex align-center">
-              <span class="card-span mr-2">{{ s.nome }}</span>
-              <span v-if="s.statusPublicado" class="tag tag-green" v-on:click="s.statusPublicado = !s.statusPublicado">Publicado</span>
-              <span v-else class="tag tag-yellow" v-on:click="s.statusPublicado = !s.statusPublicado">Não Publicado</span>
-              <v-icon @click="editServico">mdi-pencil-box-outline</v-icon>
-              
-              <v-spacer></v-spacer>
-  
-              <v-icon style="color: #555;">mdi-calendar-month</v-icon>
-              <span style="color: #555;">07 Nov 2024</span>
-            </section>
-            <v-divider></v-divider>
-            <section class="pa-2">
-              <span class="tag tag-blue">Cachorro</span>
-              <span class="tag tag-blue">Gato</span>
-              <span class="tag tag-blue">Banho</span>
-              <span class="tag tag-blue">Guaxinim</span>
-              <span class="tag tag-blue">Tosa</span>
-            </section>
-          </v-card>
+          <section v-if="!servicos.length">
+            
+            <div class="w-100 d-flex flex-column align-center">
+
+              <v-img
+                class="mb-10"
+                src="/dog-empty-state.png"
+                width="256"
+              ></v-img>
+
+              <h2>Parece que você ainda não tem nenhum serviço cadastrado</h2>
+              <h3>Experimente criar um</h3>
+            </div>
+
+          </section>
+
+          <section v-else>
+            <v-card v-for="s in servicos" :key="s" class="card-servico pa-2 mb-5" flat>
+              <section class="pa-2 d-flex align-center">
+                <span class="card-span mr-2">{{ s.nome }}</span>
+                <span v-if="s.statusPublicado" class="tag tag-green" v-on:click="s.statusPublicado = !s.statusPublicado">Publicado</span>
+                <span v-else class="tag tag-yellow" v-on:click="s.statusPublicado = !s.statusPublicado">Não Publicado</span>
+                <v-icon @click="editServico(s)">mdi-pencil-box-outline</v-icon>
+                
+                <v-spacer></v-spacer>
+    
+                <v-icon style="color: #555;">mdi-calendar-month</v-icon>
+                <span style="color: #555;">07 Nov 2024</span>
+              </section>
+              <v-divider></v-divider>
+              <section class="pa-2">
+                <span class="tag tag-blue">Cachorro</span>
+                <span class="tag tag-blue">Gato</span>
+                <span class="tag tag-blue">Banho</span>
+                <span class="tag tag-blue">Guaxinim</span>
+                <span class="tag tag-blue">Tosa</span>
+              </section>
+            </v-card>
+          </section>
+
 
         </v-tabs-window-item>
   
@@ -128,7 +147,7 @@
     </v-container>
 
     <v-dialog v-model="dialog" max-width="700">
-      <v-card>
+      <v-card class="lexend-font">
         
         <v-card-title class="d-flex align-center">
           <v-btn flat fab icon @click="dialog = false">
@@ -182,7 +201,8 @@ export default {
       this.tab = 0;
     },
 
-    editServico() {
+    editServico(s) {
+      this.servico = s;
       this.tab = 1;
     },
 
