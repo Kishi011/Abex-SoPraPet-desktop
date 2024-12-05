@@ -32,10 +32,12 @@
   
             <div style="max-width: 500px;">
               <v-text-field
+                v-model="perfil.nome"
                 label="Nome do Petshop"
               ></v-text-field>
   
               <v-text-field
+                v-model="perfil.email"
                 label="Email"
               ></v-text-field>
   
@@ -45,6 +47,7 @@
                   max-width="225"
                 ></v-text-field>
                 <v-text-field
+                  v-model="perfil.telefone"
                   label="Telefone"
                   max-width="225"
                 ></v-text-field>
@@ -59,12 +62,37 @@
                 flat
                 color="#F8623F"
                 width="225"
+                @click="dialog = true"
               >Salvar Alterações</v-btn>
             </div>
           </div>
         </v-tabs-window-item>
       </v-tabs-window>
     </v-container>
+
+    <v-dialog v-model="dialog" max-width="700">
+      <v-card class="lexend-font">
+        
+        <v-card-title class="d-flex align-center">
+          <v-btn flat fab icon @click="dialog = false">
+            <v-icon color="#F8623F">mdi-arrow-left</v-icon>
+          </v-btn>
+          <h1 class="h1-dialog">Tem certeza que deseja continuar?</h1>
+        </v-card-title>
+        
+        <v-card-text class="pl-16">
+          <v-row>
+            <v-col>
+              <h2>Tem certeza que deseja salvar as alterações?</h2>
+            </v-col>
+          </v-row>
+        </v-card-text>
+  
+        <v-card-actions>
+          <v-btn size="large" color="#F8623F" flat @click="confirm">Confirmar</v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
   </v-main>
 </template>
 
@@ -74,8 +102,52 @@ export default {
 
   data() {
     return {
+      perfil: {},
       tab: 0,
+      dialog: false,
     }
+  },
+
+  async created() {
+    await this.getPerfil();
+  },
+
+  methods: {
+    async getPerfil() {
+      await this.$axios.get(`/petshop/${12123123000112}`)
+        .then((result) => {
+          const { data } = result;
+          
+          if(data.type === 'success') {
+            this.perfil = data.data;
+            console.log(this.perfil);
+          }
+        }).catch((err) => {
+          console.log(err);
+        });
+    },
+
+    async confirm() {
+      await this.alterPerfil();
+      this.dialog = false;
+    },
+
+    async alterPerfil() {
+      const req = {
+        nome: this.perfil.nome,
+        email: this.perfil.email,
+        telefone: this.perfil.telefone,
+      }
+
+      await this.$axios.post(`/petshop/persist/${12123123000112}`, req)
+        .then((result) => {
+          const { data } = result;
+
+          console.log(data.message);
+        }).catch((err) => {
+          console.log(err);
+        });
+    },
   },
 
 }

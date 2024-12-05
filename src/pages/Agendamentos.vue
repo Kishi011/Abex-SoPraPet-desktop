@@ -5,7 +5,7 @@
   
       <section>
   
-        <div class="d-flex align-center pa-2 mb-5">
+        <div v-for="a in agendamentos" :key="a" class="d-flex align-center pa-2 mb-5">
           <v-img
             class="rounded"
             src="/Marca-01.png"
@@ -34,35 +34,6 @@
           </div>
         </div>
   
-        <div class="d-flex align-center pa-2 mb-5 ">
-          <v-img
-            class="rounded"
-            src="/Marca-01.png"
-            style="border: 1px solid #ccc"
-            width="100"
-          ></v-img>
-  
-          <div class="d-flex flex-column w-100 pl-5 pr-5">
-            <div class="d-flex align-center mb-2">
-              <h2>Agendamento: <span>Vacinação</span></h2>
-  
-              <v-spacer></v-spacer>
-  
-              <span>15/11</span>
-            </div>
-  
-            <span>Você tem um novo agendamento marcado para dia 15/11.</span>
-  
-            <div class="d-flex justify-end">
-              <v-btn
-                flat
-                x-large
-                max-width="300"
-              >Marcar no Google Agenda</v-btn>
-            </div>
-          </div>
-        </div>
-  
       </section>
     </v-container>
   </v-main>
@@ -71,6 +42,32 @@
 <script>
 export default {
   name: 'AgendamentosPage',
+
+  data() {
+    return {
+      agendamentos: [],
+    }
+  },
+
+  async created() {
+    await this.getAgendamentos();
+  },
+
+  methods: {
+    async getAgendamentos() {
+      await this.$axios.get('/agendamento')
+        .then((result) => {
+          const { data } = result;
+
+          if(data.type === 'success') {
+            this.agendamentos = data.data;
+            console.log(this.agendamentos);
+          }
+        }).catch((err) => {
+          console.log(err);
+        });
+    },
+  },
 }
 </script>
 
