@@ -64,7 +64,7 @@
                   single-line
                   :type="show ? 'text' : 'password'"
                   :append-inner-icon="show ? 'mdi-eye' : 'mdi-eye-off'"
-                  @click:appendInner="show = !show"
+                  @click:innerAppend="show = !show"
                 ></v-text-field>
     
               </v-window-item>
@@ -144,7 +144,7 @@ export default {
       show: false,
       window: 0,
       rules: {
-        cnpj: (v) => /^\d{2}\.\d{3}\.\d{3}\/\d{4}\-\d{2}$/.test(v)||'Formato de CNPJ inválido',
+        cnpj: (v) => /^\d{2}\.\d{3}\.\d{3}\/\d{4}\-\d{2}$/.test(v)||'Formato de CNPJ inválido (Digite somente os números)',
         telefone: (v) => /^\d{4}\-\d{4}$/.test(v)||'Telefone inválido',
         cep: (v) => /^\d{5}\-\d{3}$/.test(v)||'CEP inválido',
         email: (v) => /^[a-z0-9.]+@[a-z0-9]+\.[a-z]+\.([a-z]+)?$/i.test(v)||'Email não corresponde com o formato válido'
@@ -167,7 +167,7 @@ export default {
           const { data } = result;
 
           if(data.type === 'success') {
-            console.log(data.message);*/
+            console.log(data.message);
             this.$router.push({ path: 'dashboard' });
           }
 
