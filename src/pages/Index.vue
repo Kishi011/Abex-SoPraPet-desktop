@@ -167,7 +167,7 @@ export default {
           const { data } = result;
 
           if(data.type === 'success') {
-            console.log(data.message);*/
+            console.log(data.message);
             this.$router.push({ path: 'dashboard' });
           }
 
