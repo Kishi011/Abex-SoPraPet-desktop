@@ -1,41 +1,42 @@
 import { createMemoryHistory, createRouter } from 'vue-router'
+import NavBar from '../components/NavBar.vue';
+import Agendamentos from '../pages/Agendamentos.vue';
+import Configuracoes from '../pages/Configuracoes.vue';
+import Dashboard from '../pages/Dashboard.vue';
+import inicio from '../pages/Index.vue';
+import Servicos from '../pages/Servicos.vue';
 
 const routes = [
   {
     path: '/',
-    component: () => import('../pages/Index.vue'),
+    component: NavBar,
+    children: [
+      {
+        path: 'dashboard',
+        name: 'dashboard',
+        component: Dashboard
+      },
+      {
+        path: 'servicos',
+        name: 'servicos',
+        component: Servicos
+      },
+      {
+        path: 'agendamentos',
+        name: 'agendamentos',
+        component: Agendamentos
+      },
+      {
+        path: 'config',
+        name: 'configuracoes',
+        component: Configuracoes
+      },
+    ]
   },
   {
-    path: '/dashboard',
-    components: {
-      default: () => import('../pages/Dashboard.vue'),
-      navbar: () => import('../components/NavBar.vue'),
-      cardmsg: () => import('../components/CardMensagens.vue'),
-    },
-  },
-  {
-    path: '/servicos',
-    components: {
-      default: () => import('../pages/Servicos.vue'),
-      navbar: () => import('../components/NavBar.vue'),
-      cardmsg: () => import('../components/CardMensagens.vue'),
-    },
-  },
-  {
-    path: '/agendamentos',
-    components: {
-      default: () => import('../pages/Agendamentos.vue'),
-      navbar: () => import('../components/NavBar.vue'),
-      cardmsg: () => import('../components/CardMensagens.vue'),
-    },
-  },
-  {
-    path: '/config',
-    components: {
-      default: () => import('../pages/Configuracoes.vue'),
-      navbar: () => import('../components/NavBar.vue'),
-      cardmsg: () => import('../components/CardMensagens.vue'),
-    },
+    path: '',
+    name: 'inicio',
+    component: inicio
   },
 ];
 

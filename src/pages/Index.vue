@@ -31,11 +31,12 @@
               @click:appendInner="show = !show"
             ></v-text-field>
     
+            <!-- @click="login" -->
             <v-btn
               flat
               color="#F8623F"
               class="w-100 mb-5"
-              @click="login"
+              to="/dashboard"
             >Entrar</v-btn>
     
             <p class="text-center">

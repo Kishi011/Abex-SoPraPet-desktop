@@ -14,7 +14,7 @@
             </template>
             <v-card class="lexend-font">
               <v-list>
-                <v-list-item link @click="this.$router.push('/')">
+                <v-list-item link @click="this.$router.push('inicio')">
                   <v-row align-center>
                     <v-col sm="3"><v-icon>mdi-logout</v-icon></v-col>
                     <v-col>Log out</v-col>
@@ -75,6 +75,10 @@
       </v-list>
     </v-container>
   </v-navigation-drawer>
+
+  <v-main>
+    <router-view/>
+  </v-main>
 </template>
 
 <script>
