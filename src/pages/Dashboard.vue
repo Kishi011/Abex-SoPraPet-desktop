@@ -49,6 +49,26 @@
           </v-card>
         </v-col>
       </v-row>
+
+      <v-row>
+        <v-col cols="12" md="4">
+          <v-card
+          class="text-center overflow-y-auto"
+          max-height="400"
+          v-scroll.self="onScroll">
+            <v-card-title>
+              <h1>Rank de serviços</h1>
+            </v-card-title>
+            <v-card-text>
+              <v-row v-for="(i, index) in 15" :key="index">
+                <v-col>
+                  <h2>{{index + 1}}º - Nome do serviço - Preço: R$ {{( index + 1 ) * valor }}</h2>
+                </v-col>
+              </v-row>
+            </v-card-text>
+          </v-card>
+        </v-col>
+      </v-row>
     </v-main>
   </v-container>
 </template>
@@ -57,7 +77,20 @@
 import BarChart from '../components/BarChart.vue'
 export default {
   name: 'DashboardPage',
-  components: { BarChart }
+  components: { BarChart },
+
+  data() {
+    return {
+      valor: 10,
+      scrollInvoked: 0,
+    }
+  },
+
+  methods: {
+    onScroll () {
+      this.scrollInvoked.value++
+    }
+  },
 }
 </script>
 
