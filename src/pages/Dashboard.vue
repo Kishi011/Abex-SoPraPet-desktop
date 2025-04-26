@@ -1,6 +1,6 @@
 <template>
-  <v-main style="margin-left: 100px;">
-    <v-container class="lexend-font" max-width="800">
+  <v-container class="lexend-font">
+    <v-main>
       <h1 class="mb-5">Dashboard</h1>
       <!-- Informações de Lucros do Mês -->
       <v-row>
@@ -20,8 +20,6 @@
           </v-card>
         </v-col>
       </v-row>
-  
-      
   
       <!-- Serviços Prestados -->
       <v-row>
@@ -45,14 +43,14 @@
         <v-col cols="12">
           <v-card class="rounded-lg">
             <v-card-title>Gráfico de Vendas e Lucros</v-card-title>
-              <v-card-text>
-                <BarChart />
-              </v-card-text>
+            <v-card-text>
+              <BarChart />
+            </v-card-text>
           </v-card>
         </v-col>
       </v-row>
-    </v-container>
-  </v-main>
+    </v-main>
+  </v-container>
 </template>
 
 <script>
