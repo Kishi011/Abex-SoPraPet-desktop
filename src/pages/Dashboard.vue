@@ -28,6 +28,20 @@ import ServicesPieChart from '../components/ServicesPieChart.vue'
 export default {
   name: 'DashboardPage',
   components: { BarChart, ServicesPieChart }
+  components: { BarChart },
+
+  data() {
+    return {
+      valor: 10,
+      scrollInvoked: 0,
+    }
+  },
+
+  methods: {
+    onScroll () {
+      this.scrollInvoked.value++
+    }
+  },
 }
 
 </script>
