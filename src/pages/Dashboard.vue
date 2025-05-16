@@ -1,82 +1,33 @@
 <template>
-  <v-container class="lexend-font">
-    <v-main>
-      <h1 class="mb-5">Dashboard</h1>
-      <!-- Informações de Lucros do Mês -->
-      <v-row>
-        <v-col cols="12">
-          <v-card class="rounded-lg">
-            <v-card-title>Ganhos do Mês</v-card-title>
-            <v-card-text>
-              <div>
-                <v-row>
-                  <v-col class="d-flex align-center">
-                    <v-icon size="30" class="mr-2">mdi-cash</v-icon>
-                    <h2 class="d-inline">R$ 25.481</h2>
-                  </v-col>
-                </v-row>
-              </div>
-            </v-card-text>
-          </v-card>
-        </v-col>
-      </v-row>
-  
-      <!-- Serviços Prestados -->
-      <v-row>
-        <v-col cols="12">
-          <v-card class="rounded-lg">
-            <v-card-title>Serviços Prestados</v-card-title>
-            <v-card-text>
-              <v-card class="mr-2 pa-2 d-inline">Banho: 5</v-card>
-              <v-card class="mr-2 pa-2 d-inline">Tosa: 4</v-card>
-              <v-card class="mr-2 pa-2 d-inline">Vacinação: 2</v-card>
-              <v-card class="mr-2 pa-2 d-inline">Consulta: 3</v-card>
-              <v-card class="mr-2 pa-2 d-inline">Castração: 0</v-card>
-              <v-card class="mr-2 pa-2 d-inline">Cirurgia: 0</v-card>
-            </v-card-text>
-          </v-card>
-        </v-col>
-      </v-row>
-  
-      <!-- Gráfico de Vendas e Lucros -->
-      <v-row>
-        <v-col cols="12">
-          <v-card class="rounded-lg">
-            <v-card-title>Gráfico de Vendas e Lucros</v-card-title>
-            <v-card-text>
-              <BarChart />
-            </v-card-text>
-          </v-card>
-        </v-col>
-      </v-row>
+  <v-container class="lexend-font" max-width="800">
+    <h1 class="mb-5">Dashboard</h1>
 
-      <v-row>
-        <v-col cols="12" md="4">
-          <v-card
-          class="text-center overflow-y-auto"
-          max-height="400"
-          v-scroll.self="onScroll">
-            <v-card-title>
-              <h1>Rank de serviços</h1>
-            </v-card-title>
-            <v-card-text>
-              <v-row v-for="(i, index) in 15" :key="index">
-                <v-col>
-                  <h2>{{index + 1}}º - Nome do serviço - Preço: R$ {{( index + 1 ) * valor }}</h2>
-                </v-col>
-              </v-row>
-            </v-card-text>
-          </v-card>
-        </v-col>
-      </v-row>
-    </v-main>
+  <!-- Informações dos Ganhos do Mês -->
+    <h1 class="mb-5">Distribuição dos Serviços</h1>
+    <section class="d-flex justify-center">
+      <div class="d-flex flex-column align-center justify-center" style="margin-right: 200px;">
+        <h1>Ganhos do Mês</h1>
+        <h2 class="d-inline"><v-icon>mdi-cash</v-icon>R$ 25.481</h2>
+      </div>
+      <ServicesPieChart
+        style="max-width: 70%;"
+      />
+    </section>
+
+    <!-- Gráfico de Vendas e Lucros -->
+    <h1 class="mb-5">Gráfico de Vendas e Lucros</h1>
+    <BarChart
+      style="max-width: 100%;"
+    />
   </v-container>
 </template>
 
 <script>
 import BarChart from '../components/BarChart.vue'
+import ServicesPieChart from '../components/ServicesPieChart.vue'
 export default {
   name: 'DashboardPage',
+  components: { BarChart, ServicesPieChart }
   components: { BarChart },
 
   data() {
@@ -92,6 +43,7 @@ export default {
     }
   },
 }
+
 </script>
 
 <style>
