@@ -1,5 +1,5 @@
 <template>
-  <v-container class="lexend-font" max-width="800">
+  <v-container class="lexend-font" max-width="1000">
     <h1 class="mb-5">Dashboard</h1>
 
   <!-- Informações dos Ganhos do Mês -->
@@ -9,16 +9,12 @@
         <h1>Ganhos do Mês</h1>
         <h2 class="d-inline"><v-icon>mdi-cash</v-icon>R$ 25.481</h2>
       </div>
-      <ServicesPieChart
-        style="max-width: 70%;"
-      />
+      <ServicesPieChart />
     </section>
 
     <!-- Gráfico de Vendas e Lucros -->
     <h1 class="mb-5">Gráfico de Vendas e Lucros</h1>
-    <BarChart
-      style="max-width: 100%;"
-    />
+    <BarChart />
   </v-container>
 </template>
 
@@ -27,8 +23,7 @@ import BarChart from '../components/BarChart.vue'
 import ServicesPieChart from '../components/ServicesPieChart.vue'
 export default {
   name: 'DashboardPage',
-  components: { BarChart, ServicesPieChart }
-  components: { BarChart },
+  components: { BarChart, ServicesPieChart },
 
   data() {
     return {

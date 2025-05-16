@@ -1,42 +1,40 @@
 <template>
-  <v-main style="margin-left: 100px;">
-    <v-container class="lexend-font agendamento-style" max-width="800">
-      <h1 class="mb-5">Agendamentos</h1>
-  
-      <section>
-  
-        <div v-for="a in agendamentos" :key="a" class="d-flex align-center pa-2 mb-5">
-          <v-img
-            class="rounded"
-            src="/Marca-01.png"
-            style="border: 1px solid #ccc"
-            width="100"
-          ></v-img>
-  
-          <div class="d-flex flex-column w-100 pl-5 pr-5">
-            <div class="d-flex align-center mb-2">
-              <h2>Agendamento: <span>Manicure</span></h2>
-  
-              <v-spacer></v-spacer>
-  
-              <span>17/11</span>
-            </div>
-  
-            <span>Você tem um novo agendamento marcado para dia 17/11.</span>
-  
-            <div class="d-flex justify-end">
-              <v-btn
-                flat
-                x-large
-                max-width="300"
-              >Marcar no Google Agenda</v-btn>
-            </div>
+  <v-container class="lexend-font agendamento-style" max-width="1000">
+    <h1 class="mb-5">Agendamentos</h1>
+
+    <section>
+
+      <div v-for="a in agendamentos" :key="a" class="d-flex align-center pa-2 mb-5">
+        <v-img
+          class="rounded"
+          src="/Marca-01.png"
+          style="border: 1px solid #ccc"
+          width="100"
+        ></v-img>
+
+        <div class="d-flex flex-column w-100 pl-5 pr-5">
+          <div class="d-flex align-center mb-2">
+            <h2>Agendamento: <span>Manicure</span></h2>
+
+            <v-spacer></v-spacer>
+
+            <span>17/11</span>
+          </div>
+
+          <span>Você tem um novo agendamento marcado para dia 17/11.</span>
+
+          <div class="d-flex justify-end">
+            <v-btn
+              flat
+              x-large
+              max-width="300"
+            >Marcar no Google Agenda</v-btn>
           </div>
         </div>
-  
-      </section>
-    </v-container>
-  </v-main>
+      </div>
+
+    </section>
+  </v-container>
 </template>
 
 <script>

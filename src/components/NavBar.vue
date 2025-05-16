@@ -15,7 +15,7 @@
               </template>
               <v-card class="lexend-font">
                 <v-list>
-                  <v-list-item link @click="this.$router.push('inicio')">
+                  <v-list-item link @click="this.$router.push('/')">
                     <v-row align-center>
                       <v-col sm="3"><v-icon>mdi-logout</v-icon></v-col>
                       <v-col>Log out</v-col>
@@ -77,15 +77,20 @@
       </v-container>
     </v-navigation-drawer>
 
-    <v-main>
+    <v-main style="margin-left: 100px;">
       <router-view/>
     </v-main>
+
+    <CardMensagens />
   </v-app>
 </template>
 
 <script>
+import CardMensagens from './CardMensagens.vue';
+
 export default {
   name: 'DefaultLayout',
+  components: {CardMensagens},
 
   data() {
     return {
