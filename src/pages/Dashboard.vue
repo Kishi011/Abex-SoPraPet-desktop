@@ -1,13 +1,13 @@
 <template>
-  <v-container class="lexend-font" max-width="1000">
+  <v-container class="lexend-font" max-width="1400">
     <h1 class="mb-5">Dashboard</h1>
 
     <h1 class="mb-5">Distribuição dos Serviços</h1>
 
-    <v-row class="bg-red align-center">
+    <v-row class="align-center" no-gutters>
       <v-col md="8">
         <v-row>
-          <v-col md="4" class="bg-green">
+          <v-col md="6">
             <v-card class="text-center">
               <v-card-title class="text-h6">Total de agendamentos</v-card-title>
               <v-card-text>
@@ -18,7 +18,7 @@
             </v-card>
           </v-col>
 
-          <v-col md="4">
+          <v-col md="6">
             <v-card class="text-center">
               <v-card-title class="text-h6">Valores totais</v-card-title>
               <v-card-text>
@@ -29,13 +29,34 @@
             </v-card>
           </v-col>
 
-          <v-col md="4" class="bg-blue">
+          <v-col md="3">
             <v-card>
-              <v-card-title class="text-h6 text-center">Top melhores serviços</v-card-title>
+              <v-card-title class="text-h6 text-center">Clientes</v-card-title>
               <v-card-text>
-                <h4>Banho</h4>
-                <h4>Tosa</h4>
-                <h4>Vacina preventiva</h4>
+                <h4>Ativos: 786</h4>
+                <h4>Premium: 321</h4>
+                <h4>Inativos: 23</h4>
+              </v-card-text>
+            </v-card>
+          </v-col>
+          <v-col md="4">
+            <v-card class="text-center">
+              <v-card-title class="text-h6">Raças comuns</v-card-title>
+              <v-card-text>
+                <h4>Schitzu</h4>
+                <h4>Golden retriever</h4>
+                <h4>Pintscher</h4>
+              </v-card-text>
+            </v-card>
+          </v-col>
+
+          <v-col md="5">
+            <v-card class="text-center">
+              <v-card-title class="text-h6">Portes mais atendidos</v-card-title>
+              <v-card-text>
+                <h4>Pequeno</h4>
+                <h4>Médio</h4>
+                <h4>Filhote</h4>
               </v-card-text>
             </v-card>
           </v-col>
@@ -43,48 +64,27 @@
       </v-col>
 
       <v-col md="4">
-        <v-card>
-          <v-card-title class="text-h6 text-center">Clientes</v-card-title>
-          <v-card-text>
-            <h4>Ativos: 786</h4>
-            <h4>Premium: 321</h4>
-            <h4>Inativos: 23</h4>
-          </v-card-text>
-        </v-card>
-      </v-col>
+        <v-col md="12">
+          <v-card>
+            <v-card-title class="text-h6 text-center">Top melhores serviços</v-card-title>
+            <v-card-text>
+              <h4>1º Banho</h4>
+              <h4>2º Tosa</h4>
+              <h4>3º Vacina preventiva</h4>
+            </v-card-text>
+          </v-card>
+        </v-col>
 
-      <v-col md="4">
-        <v-card class="text-center">
-          <v-card-title class="text-h6">Raças comuns</v-card-title>
-          <v-card-text>
-            <h4>Schitzu</h4>
-            <h4>Golden retriever</h4>
-            <h4>Pintscher</h4>
-          </v-card-text>
-        </v-card>
-      </v-col>
-
-      <v-col md="5">
-        <v-card class="text-center">
-          <v-card-title class="text-h6">Portes atendidos</v-card-title>
-          <v-card-text>
-            <h4>Pequeno</h4>
-            <h4>Médio</h4>
-            <h4>Filhote</h4>
-          </v-card-text>
-        </v-card>
-      </v-col>
-
-
-      <v-col md="12">
-        <v-card>
-          <v-card-title class="text-h6 text-center">Agendamentos marcados</v-card-title>
-          <v-card-text>
-            <h4>Hoje: </h4>
-            <h4>Amanhã: </h4>
-            <h4>Ontem: </h4>
-          </v-card-text>
-        </v-card>
+        <v-col md="12">
+          <v-card>
+            <v-card-title class="text-h6 text-center">Agendamentos marcados</v-card-title>
+            <v-card-text>
+              <h4>Hoje: </h4>
+              <h4>Amanhã: </h4>
+              <h4>Ontem: </h4>
+            </v-card-text>
+          </v-card>
+        </v-col>
       </v-col>
     </v-row>
 
