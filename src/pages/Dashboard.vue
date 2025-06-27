@@ -4,55 +4,48 @@
 
     <h1 class="mb-5">Distribuição dos Serviços</h1>
 
-    <v-row class="bg-red align-center">
-      <v-col md="8">
-        <v-row>
-          <v-col md="4" class="bg-green">
-            <v-card class="text-center">
-              <v-card-title class="text-h6">Total de agendamentos</v-card-title>
-              <v-card-text>
-                <h4>Mês anterior: 243</h4>
-                <h4>Mês atual: 243</h4>
-                <h4>Mês sucessor: 243</h4>
-              </v-card-text>
-            </v-card>
-          </v-col>
-
-          <v-col md="4">
-            <v-card class="text-center">
-              <v-card-title class="text-h6">Valores totais</v-card-title>
-              <v-card-text>
-                <h4>Recebimenos</h4>
-                <h4>Despesas</h4>
-                <h4>Lucros</h4>
-              </v-card-text>
-            </v-card>
-          </v-col>
-
-          <v-col md="4" class="bg-blue">
-            <v-card>
-              <v-card-title class="text-h6 text-center">Top melhores serviços</v-card-title>
-              <v-card-text>
-                <h4>Banho</h4>
-                <h4>Tosa</h4>
-                <h4>Vacina preventiva</h4>
-              </v-card-text>
-            </v-card>
-          </v-col>
-        </v-row>
-      </v-col>
-
-      <v-col md="4">
-        <v-card>
-          <v-card-title class="text-h6 text-center">Clientes</v-card-title>
+    <v-row class="align-center">
+      <v-col md="3">
+        <v-card class="d-flex flex-column align-center justify-center" style="height: 150px;">
+          <v-card-title class="text-h6">Agendamentos</v-card-title>
           <v-card-text>
-            <h4>Ativos: 786</h4>
-            <h4>Premium: 321</h4>
-            <h4>Inativos: 23</h4>
+            <h4>Mês anterior: {{ agendamentos.length }}</h4>
+            <h4>Mês atual: {{ agendamentos.length }}</h4>
+            <h4>Mês sucessor: {{ agendamentos.length }}</h4>
           </v-card-text>
         </v-card>
       </v-col>
 
+      <v-col md="3">
+        <v-card class="text-center" style="height: 150px;">
+          <v-card-title class="text-h6">Lucro Total</v-card-title>
+          <v-card-text>
+            <h4>R$ {{ lucro }}</h4>
+          </v-card-text>
+        </v-card>
+      </v-col>
+
+      <v-col md="3">
+        <v-card style="height: 150px;">
+          <v-card-title class="text-h6 text-center">Top serviços</v-card-title>
+          <v-card-text>
+            <h4 v-for="i in 4" :key="i">
+              {{ servicosBuscados[i]?.descricao }}
+            </h4>
+          </v-card-text>
+        </v-card>
+      </v-col>
+      <v-col md="3">
+        <v-card style="height: 150px;">
+          <v-card-title class="text-h6 text-center">Total de Clientes</v-card-title>
+          <v-card-text>
+            <h4 class="text-center">{{ totalClientes }}</h4>
+          </v-card-text>
+        </v-card>
+      </v-col>
+    </v-row>
+
+    <v-row>
       <v-col md="4">
         <v-card class="text-center">
           <v-card-title class="text-h6">Raças comuns</v-card-title>
@@ -64,7 +57,7 @@
         </v-card>
       </v-col>
 
-      <v-col md="5">
+      <v-col md="4">
         <v-card class="text-center">
           <v-card-title class="text-h6">Portes atendidos</v-card-title>
           <v-card-text>
@@ -76,13 +69,13 @@
       </v-col>
 
 
-      <v-col md="12">
+      <v-col md="4">
         <v-card>
           <v-card-title class="text-h6 text-center">Agendamentos marcados</v-card-title>
           <v-card-text>
-            <h4>Hoje: </h4>
-            <h4>Amanhã: </h4>
-            <h4>Ontem: </h4>
+            <h4>Hoje: {{ agendamentos.length - 10 }}</h4>
+            <h4>Amanhã: {{ agendamentos.length - 15 }}</h4>
+            <h4>Ontem: {{ agendamentos.length - 7 }}</h4>
           </v-card-text>
         </v-card>
       </v-col>
@@ -111,13 +104,83 @@ export default {
     return {
       valor: 10,
       scrollInvoked: 0,
+      agendamentos: [],
+      lucro: 0,
+      pagamentos: [],
+      servicosBuscados: [],
+      totalClientes: 0,
     }
+  },
+
+  async created() {
+    await this.getAgendamentos();
+    await this.getPagamentos();
+    await this.getClientes();
+    await this.getServicosBuscados();
   },
 
   methods: {
     onScroll() {
       this.scrollInvoked.value++
-    }
+    },
+
+    async getAgendamentos() {
+      await this.$axios.get('/agendamento')
+        .then((result) => {
+          const { data } = result;
+
+          if (data.type === 'success') {
+            this.agendamentos = data.data;
+          }
+        }).catch((err) => {
+          console.log(err);
+        });
+    },
+
+    async getClientes() {
+      await this.$axios.get('/usuarios')
+        .then((result) => {
+          const { data } = result;
+
+          if (data.type === 'success') {
+            this.totalClientes = data.data.count
+          }
+        }).catch((err) => {
+          console.log(err);
+        });
+    },
+
+    async getPagamentos() {
+      await this.$axios.get('/pagamento')
+        .then((result) => {
+          const { data } = result;
+
+          if (data.type === 'success') {
+            this.pagamentos = data.data;
+          }
+
+          this.pagamentos.forEach(p => {
+            this.lucro += parseInt(p.valor);
+          });
+
+        }).catch((err) => {
+          console.log(err);
+        });
+    },
+
+    async getServicosBuscados() {
+      await this.$axios.get('/agendamento-servicos-mais-buscados')
+        .then((result) => {
+          const { data } = result;
+
+          if (data.type === 'success') {
+            this.servicosBuscados = data.data;
+          }
+
+        }).catch((err) => {
+          console.log(err);
+        });
+    },
   },
 }
 
